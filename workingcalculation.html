@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            table{
+                margin-top:50px;
+                margin-left: 400px;
+            }
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .labelStyle{
+            font-size:25px;
+        }
+        body{
+            /* background-color:rgb(18, 51, 114); */
+            background-image: url("images/flower.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <h2 style="color:black;font-size:35px;;">Calculating for working Days in Year</h2>
+        <br>
+        <br>
+        <label for="" style="color: black;" class="labelStyle">Year:</label>
+        <input type="text" id="year" placeholder="Type Year">&nbsp;&nbsp;&nbsp;
+        <b><button  onclick="getDaysInMonth()">Find Days</button></b>
+        <br>
+        <br>
+        <br>
+        <table style="background-color:#F07DEA;width:550px;height:300px;" id="table">
+            <thead>
+               <tr>
+                <th>Month</th>
+                <th>No of Days</th>
+                <th>Sundays</th>
+                <th>Saturdays</th>
+                <th>Working Days</th>
+             
+            </tr> 
+       
+            </thead>
+         <tbody  id="data">
+            <tr>
+               <td><b>January</b></td>
+            </tr> 
+            <tr>
+                <td><b>February</b></td>
+            </tr> 
+            <tr>
+                <td><b>March</b></td>
+            </tr> 
+            <tr>
+                <td><b>April</b></td>
+            </tr> 
+            <tr>
+                <td><b>May</b></td>
+            </tr> 
+            <tr>
+                <td><b>June</b></td>
+            </tr> 
+            <tr>
+                <td><b>july</b></td>
+            </tr> 
+            <tr>
+                <td><b>August</b></td>
+            </tr> 
+            <tr>
+                <td><b>September</b></td>
+            </tr> 
+            <tr>
+                <td><b>October</b></td>
+            </tr> 
+            <tr>
+                <td><b>November</b></td>
+            </tr> 
+            <tr>
+                <td><b>December</b></td>
+            </tr> 
+           
+         </tbody>
+         
+    </table>
+<script>
+    function getDaysInMonth(){
+    var yearCount=document.getElementById("year").value;
+   
+    for(i=1;i<=12;i++)
+    {
+       
+        var date=new Date(yearCount,i,0).getDate();//namaku ithula date venum so getDate();
+        var row = document.getElementsByTagName("tr")[i];
+        var x = row.insertCell(-1);
+        x.innerHTML=date;   
+
+       var sundays = [8-(new Date( i +'/01/'+ yearCount ).getDay()) ];//8 weekdays(7) index poruthu so index 
+        console.log(sundays,date)
+        for ( var j = sundays[0] + 7; j< date; j += 7 ) {
+            sundays.push( j );
+        }
+ 
+        var row = document.getElementsByTagName("tr")[i];
+        var x = row.insertCell(-1);
+        x.innerHTML=sundays.length; 
+        console.log("sunday",sundays.length);// sunday length mattum..
+
+ 
+        var saturdays = [7-(new Date( i +'/01/'+ yearCount ).getDay()) ];//8 weekdays(7) index poruthu so index 
+        console.log(saturdays,date)
+        for ( var j = saturdays[0] + 7; j< date; j += 7 ) {
+            saturdays.push( j );
+        }
+        var row = document.getElementsByTagName("tr")[i];
+
+        var x = row.insertCell(-1);
+        x.innerHTML=saturdays.length; 
+        console.log("saturday",saturdays.length);//saturday length mattum..
+
+      
+          var sum=parseInt(document.getElementById('table').rows[i].cells[2].innerHTML)+parseInt(document.getElementById('table').rows[i].cells[3].innerHTML);
+          //parseInt(string to change numbers like Integer,float)
+          var total=parseInt(document.getElementById('table').rows[i].cells[1].innerHTML)-sum;
+          
+          var row = document.getElementsByTagName("tr")[i];
+
+            var x = row.insertCell(-1);
+            x.innerHTML=total; 
+    }
+}
+
+
+    </script>
+    </body>
+</html>
